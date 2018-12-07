@@ -8,28 +8,37 @@
 
 import UIKit
 
-var Alphabet = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]
-func returnEmpty(playerTwoInputTextField: UITextField) -> String {
-    var playerTwoInputTextField = ""
-    for _ in playerTwoInputTextField.text {
-          playerTwoInputTextField.append("-")
-    }
-    return playerTwoInputTextField
-}
-  var hiddeWordArray = [String]()
-func setWord(input: String) -> String {
-    let secretWord = input.map { _ in return "-"}
-    hiddeWordArray = secretWord
-    return secretWord.reduce("", +)
-}
+var guesses = 0
+//var chances = 0
 
-func checkForGuess(word: [String], guess: String) -> String {
-    for (index,letter) in word.enumerated() {
-        if letter == guess {
-            hiddeWordArray[index] = letter
+class HangmanBrain {
+   // var alphabet = [qwertyuiopasdfghjklzxcvbnm]
+    var playerOneWord = [String]()
+    
+    
+    func setUpWord(input: String) -> String {
+        let guessedLetters = input.map { _ in return "-" }
+        playerOneWord = guessedLetters
+        guesses = 6
+        return guessedLetters.reduce("", +)
+    }
+    
+    func checkForGuess(word: [String], guess: String) -> String {
+        for (index,letter) in word.enumerated() {
+            if letter == guess {
+                playerOneWord[index] = letter
+                guesses += 1
+            }
         }
+        return playerOneWord.reduce("", +)
     }
-    return hiddeWordArray.reduce("", +)
-}
 
+    func checkForWord(word: [String], guess: String) -> String {
+        for (index, letter) in word.enumerated() {
+            if letter == word {
+                playerOneWord[index] = letter
+            }
+        }
+        return playerOneWord.reduce("", +)
+    }
 }

@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //var hangmanBrain: HangManBrain =
+    var hangmanBrain = HangmanBrain()
     
-    @IBOutlet weak var hangmanTitle: UILabel!
+    //@IBOutlet weak var hangmanTitle: UILabel!
 
     @IBOutlet weak var playerOneInputTextField: UITextField!
     @IBOutlet weak var playerTwoInputTextField: UITextField!
@@ -23,19 +23,21 @@ class ViewController: UIViewController {
         @IBOutlet weak var instructions: UITextView!
     
         @IBOutlet weak var displayRightChoices: UILabel!
-        @IBOutlet weak var newGame: UITextField!
+    @IBAction func newGame(_ sender: UIButton) {
+    }
+
     override func viewDidLoad() {
     super.viewDidLoad()
     
-        instructions.text = hangmanBrain.instructions
-        playerTwoInputTextField.delegate = self
-        playerOneInputTextField.delegate = self
+        //instructions.text = hangmanBrain.instructions
+//        playerTwoInputTextField.delegate = self
+//        playerOneInputTextField.delegate = self
         
   }
 
 
 }
-
+//
 //extension ViewController: UITextFieldDelegate {
 //
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -45,7 +47,7 @@ class ViewController: UIViewController {
 //        textField.resignFirstResponder()
 //
 //        if textField == playerOneInputTextField{
-//            hangmanBrain.playerOneTextFeild = textField.text ?? ""
+//            hangmanBrain.playerOneWord = textField.text ?? ""
 //            textField.clearButtonMode = .whileEditing
 //            print("This is the word: \(hangmanBrain.hiddenWord)")
 //
@@ -97,6 +99,67 @@ class ViewController: UIViewController {
 //        let characterSet = CharacterSet(charactersIn: string)
 //
 //
-
-
-
+//
+//
+//
+//}
+//class ViewController: UIViewController {
+//    var guessedArray = [String]()
+//    @IBOutlet weak var userInputTextField: UITextField!
+//    @IBOutlet weak var guessTextField: UITextField!
+//    @IBOutlet weak var hangmanImage: UIImageView!
+//    @IBOutlet weak var secretWord: UILabel!
+//
+//
+//    var userInput = ""
+//    var hangmanBrain: GameBrain = GameBrain()
+//
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        guessTextField.delegate = self
+//        userInputTextField.delegate = self
+//        // Do any additional setup after loading the view, typically from a nib.
+//    }
+//
+//
+//
+//}
+//
+//
+////comform to textfield delegate
+////should return
+//
+//extension ViewController: UITextFieldDelegate {
+//    //implement methods
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//        switch textField {
+//        case userInputTextField:
+//            guessedArray = textField.text!.map{String($0)}
+//            textField.isHidden = true
+//            userInput.append(userInputTextField.text ?? "")
+//            let setWord = hangmanBrain.setWord(input: userInputTextField.text!).lowercased()
+//            secretWord.text = "\(setWord)"
+//
+//        case guessTextField:
+//            guard let count = guessTextField.text?.count, count == 1 else { return false }
+//            let guessedWord = hangmanBrain.checkForGuess(word: guessedArray, guess: guessTextField.text!)
+//            guessTextField.text = ""
+//            secretWord.text = "\(guessedWord)"
+//            if chances == 6 {
+//                return false
+//            }
+//        default:
+//            break
+//        }
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        print(textField.text ?? "")
+//        return true
+//    }
+//
+//}
